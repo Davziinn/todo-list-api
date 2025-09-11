@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,9 +23,12 @@ public class UsuarioEntity {
     @Column(name = "NM_USU")
     private String nomeCompleto;
 
-    @Column(name = "EM_USU")
+    @Column(name = "EML_USU")
     private String email;
 
-    @Column(name = "PSS_USU")
-    private String password;
+    @Column(name = "SEN_USU")
+    private String senha;
+
+    @OneToMany(mappedBy = "sequencialUsuario")
+    private List<ListaTarefaEntity> listasTarefas;
 }
