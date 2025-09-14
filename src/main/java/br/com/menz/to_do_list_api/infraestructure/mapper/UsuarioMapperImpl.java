@@ -3,7 +3,9 @@ package br.com.menz.to_do_list_api.infraestructure.mapper;
 import br.com.menz.to_do_list_api.domain.model.Usuario;
 import br.com.menz.to_do_list_api.infraestructure.dto.UsuarioDTO;
 import br.com.menz.to_do_list_api.infraestructure.entity.UsuarioEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UsuarioMapperImpl implements UsuarioMapper {
     @Override
     public Usuario toModel(UsuarioDTO dto) {
