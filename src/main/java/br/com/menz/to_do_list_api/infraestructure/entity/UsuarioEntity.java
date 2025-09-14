@@ -20,15 +20,15 @@ public class UsuarioEntity {
     @Column(name = "SQ_USU")
     private UUID sequencial;
 
-    @Column(name = "NM_USU")
-    private String nomeCompleto;
+    @Column(name = "NM_USU", nullable = false, length = 50)
+    private String nome;
 
-    @Column(name = "EML_USU")
+    @Column(name = "EML_USU", nullable = false, length = 50)
     private String email;
 
-    @Column(name = "SEN_USU")
+    @Column(name = "SEN_USU", nullable = false, length = 255)
     private String senha;
 
-    @OneToMany(mappedBy = "sequencialUsuario")
+    @OneToMany(mappedBy = "usuario")
     private List<ListaTarefaEntity> listasTarefas;
 }

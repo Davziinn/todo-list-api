@@ -28,8 +28,8 @@ public class ListaTarefaEntity {
 
     @ManyToOne
     @JoinColumn(name = "SQ_USU")
-    private UsuarioEntity sequencialUsuario;
+    private UsuarioEntity usuario;
 
-    @OneToMany(mappedBy = "sequencialTarefa")
+    @OneToMany(mappedBy = "listaTarefa")
     private List<TarefaEntity> tarefas;
 }

@@ -8,6 +8,7 @@
     import org.hibernate.annotations.CreationTimestamp;
 
     import java.time.LocalDate;
+    import java.util.Set;
     import java.util.UUID;
 
     @Entity
@@ -29,7 +30,7 @@
         private String descricaoTarefa;
 
         @Enumerated(EnumType.STRING)
-        @Column(name = "ST_TAR")
+        @Column(name = "ST_TAR", nullable = false, length = 20)
         private StatusTarefaEnum statusTarefa;
 
         @CreationTimestamp
@@ -45,4 +46,7 @@
         @ManyToOne
         @JoinColumn(name = "SQ_LTAF")
         private ListaTarefaEntity listaTarefa;
+
+        @OneToMany(mappedBy = "sequencialTarefa", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        private Set<TarefaTagEntity> tarefasTags;
     }

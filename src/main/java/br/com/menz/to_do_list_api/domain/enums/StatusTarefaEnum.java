@@ -5,5 +5,4 @@ public enum StatusTarefaEnum {
     CONCLUIDO,
     PENDENTE,
     FAZENDO,
-
 }
