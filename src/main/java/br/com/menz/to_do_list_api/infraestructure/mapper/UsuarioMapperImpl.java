@@ -17,14 +17,12 @@ public class UsuarioMapperImpl implements UsuarioMapper {
 
     @Override
     public UsuarioEntity toEntity(Usuario model) {
-        UsuarioEntity entity = new UsuarioEntity();
-
-        entity.setSequencial(model.getSequencial());
-        entity.setNome(model.getNome());
-        entity.setEmail(model.getEmail());
-        entity.setSenha(model.getSenha());
-
-        return entity;
+        return UsuarioEntity.builder()
+                .sequencial(model.getSequencial())
+                .nome(model.getNome())
+                .email(model.getEmail())
+                .senha(model.getSenha())
+                .build();
     }
 
     @Override
@@ -39,11 +37,11 @@ public class UsuarioMapperImpl implements UsuarioMapper {
 
     @Override
     public UsuarioDTO toDTO(Usuario model) {
-        return new UsuarioDTO(
-                model.getSequencial(),
-                model.getNome(),
-                model.getEmail(),
-                model.getSenha()
-        );
+        return UsuarioDTO.builder()
+                .sequencial(model.getSequencial())
+                .nome(model.getNome())
+                .email(model.getEmail())
+                .senha(model.getSenha())
+                .build();
     }
 }
