@@ -24,5 +24,5 @@ public class Tarefa implements Serializable {
     private LocalDate dataFim;
     private LocalDate prazoTarefa;
     private ListaTarefa listaTarefa;
-    private TarefaTag tarefaTag;
+    // private TarefaTag tarefaTag;
 }

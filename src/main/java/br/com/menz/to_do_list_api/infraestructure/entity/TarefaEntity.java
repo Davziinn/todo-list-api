@@ -3,6 +3,7 @@
     import br.com.menz.to_do_list_api.domain.enums.StatusTarefaEnum;
     import jakarta.persistence.*;
     import lombok.AllArgsConstructor;
+    import lombok.Builder;
     import lombok.Data;
     import lombok.NoArgsConstructor;
     import org.hibernate.annotations.CreationTimestamp;
@@ -16,6 +17,7 @@
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
+    @Builder
     public class TarefaEntity {
 
         @Id
