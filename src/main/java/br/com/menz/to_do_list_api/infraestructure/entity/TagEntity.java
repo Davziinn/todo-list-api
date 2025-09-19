@@ -22,7 +22,7 @@ public class TagEntity {
     @Column(name = "SQ_TAG")
     private UUID sequencial;
 
-    @Column(name = "NM_TAGJ")
+    @Column(name = "NM_TAG")
     private String nomeTag;
 
     @OneToMany(mappedBy = "sequencialTag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
