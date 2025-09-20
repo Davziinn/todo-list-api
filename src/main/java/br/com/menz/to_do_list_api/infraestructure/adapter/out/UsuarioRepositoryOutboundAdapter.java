@@ -28,10 +28,8 @@ public class UsuarioRepositoryOutboundAdapter implements UsuarioRepositoryOutbou
     }
 
     @Override
-    public Optional<Usuario> buscarBySequencial(Usuario usuario) {
-        UUID sequencialExtraidoDoObjeto = usuario.getSequencial();
-
-        Optional<UsuarioEntity> usuarioBuscado = repositoryJPA.findById(sequencialExtraidoDoObjeto);
+    public Optional<Usuario> buscarUsuarioBySequencial(UUID sequencial) {
+        Optional<UsuarioEntity> usuarioBuscado = repositoryJPA.findById(sequencial);
 
         return usuarioBuscado.map(mapper::toModel);
     }
@@ -53,5 +51,12 @@ public class UsuarioRepositoryOutboundAdapter implements UsuarioRepositoryOutbou
     @Override
     public void deletarUsuarioBySequencial(UUID sequencial) {
         repositoryJPA.deleteById(sequencial);
+    }
+
+    @Override
+    public Optional<Usuario> buscarUsuarioByEmail(String email) {
+        Optional<UsuarioEntity> emailBuscado = repositoryJPA.findByEmail(email);
+
+        return emailBuscado.map(mapper::toModel);
     }
 }
