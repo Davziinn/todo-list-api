@@ -2,9 +2,12 @@ package br.com.menz.to_do_list_api.domain.service;
 
 import br.com.menz.to_do_list_api.domain.exceptions.EmailUsuarioNotFoundException;
 import br.com.menz.to_do_list_api.domain.exceptions.UsuarioJaExisteException;
+import br.com.menz.to_do_list_api.domain.exceptions.UsuariosNaoEncontradosException;
 import br.com.menz.to_do_list_api.domain.model.Usuario;
 import br.com.menz.to_do_list_api.domain.ports.in.UsuarioServiceInboundPort;
 import br.com.menz.to_do_list_api.domain.ports.out.UsuarioRepositoryOutboundPort;
+
+import java.util.List;
 
 public class UsuarioService implements UsuarioServiceInboundPort {
 
@@ -30,4 +33,14 @@ public class UsuarioService implements UsuarioServiceInboundPort {
         return usuarioRepositoryOutbound.buscarUsuarioByEmail(email)
                 .orElseThrow(() -> new EmailUsuarioNotFoundException("Email não encontrado"));
     }
+
+    @Override
+    public List<Usuario> buscarTodosOsUsuarios() {
+        try {
+            return usuarioRepositoryOutbound.buscarTodos();
+        } catch (Exception e) {
+            throw new UsuariosNaoEncontradosException("Nenhum usuário foi encontrado");
+        }
+    }
+
 }

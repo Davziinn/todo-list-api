@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/v1/usuarios")
 public class UsuarioController implements UsuarioRestContract {
@@ -33,5 +35,15 @@ public class UsuarioController implements UsuarioRestContract {
     public ResponseEntity<UsuarioDTO> buscarUsuarioByEmail(@PathVariable String email) {
         UsuarioDTO emailBuscado = mapper.toDTO(usuarioService.buscarUsuarioByEmail(email));
         return ResponseEntity.status(HttpStatus.OK).body(emailBuscado);
+    }
+
+    @Override
+    @GetMapping
+    public ResponseEntity<List<UsuarioDTO>> buscarTodosOsUsuarios() {
+        List<UsuarioDTO> usuariosBuscados = usuarioService.buscarTodosOsUsuarios()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+        return ResponseEntity.status(HttpStatus.OK).body(usuariosBuscados);
     }
 }
