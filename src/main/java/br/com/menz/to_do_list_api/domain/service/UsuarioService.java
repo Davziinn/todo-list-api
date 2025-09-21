@@ -1,5 +1,6 @@
 package br.com.menz.to_do_list_api.domain.service;
 
+import br.com.menz.to_do_list_api.domain.exceptions.EmailUsuarioNotFoundException;
 import br.com.menz.to_do_list_api.domain.exceptions.UsuarioJaExisteException;
 import br.com.menz.to_do_list_api.domain.model.Usuario;
 import br.com.menz.to_do_list_api.domain.ports.in.UsuarioServiceInboundPort;
@@ -22,5 +23,11 @@ public class UsuarioService implements UsuarioServiceInboundPort {
                 });
 
         return usuarioRepositoryOutbound.salvarUsuario(usuario);
+    }
+
+    @Override
+    public Usuario buscarUsuarioByEmail(String email) {
+        return usuarioRepositoryOutbound.buscarUsuarioByEmail(email)
+                .orElseThrow(() -> new EmailUsuarioNotFoundException("Email não encontrado"));
     }
 }

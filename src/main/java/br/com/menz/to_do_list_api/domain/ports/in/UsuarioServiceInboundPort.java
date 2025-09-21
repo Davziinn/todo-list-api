@@ -5,4 +5,6 @@ import br.com.menz.to_do_list_api.domain.model.Usuario;
 public interface UsuarioServiceInboundPort {
 
     Usuario criarUsuario(Usuario usuario);
+
+    Usuario buscarUsuarioByEmail(String email);
 }

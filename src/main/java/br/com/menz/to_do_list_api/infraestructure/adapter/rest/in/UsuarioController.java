@@ -6,10 +6,7 @@ import br.com.menz.to_do_list_api.infraestructure.mapper.UsuarioMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/usuarios")
@@ -29,5 +26,12 @@ public class UsuarioController implements UsuarioRestContract {
         UsuarioDTO usuarioSalvo = mapper.toDTO(usuarioService.criarUsuario(mapper.toModel(usuarioDTO)));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+    }
+
+    @Override
+    @GetMapping("/{email}")
+    public ResponseEntity<UsuarioDTO> buscarUsuarioByEmail(@PathVariable String email) {
+        UsuarioDTO emailBuscado = mapper.toDTO(usuarioService.buscarUsuarioByEmail(email));
+        return ResponseEntity.status(HttpStatus.OK).body(emailBuscado);
     }
 }
