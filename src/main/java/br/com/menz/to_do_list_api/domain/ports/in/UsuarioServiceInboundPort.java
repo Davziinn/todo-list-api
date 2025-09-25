@@ -14,4 +14,6 @@ public interface UsuarioServiceInboundPort {
     List<Usuario> buscarTodosOsUsuarios();
 
     Usuario editarUsuario (UUID sequencial, Usuario usuario);
+
+    void deletarUsuarioBySequencial (UUID sequencial);
 }

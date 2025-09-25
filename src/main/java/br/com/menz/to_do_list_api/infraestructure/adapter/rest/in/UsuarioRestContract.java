@@ -21,4 +21,7 @@ public interface UsuarioRestContract {
 
     @PutMapping("/{sequencial}")
     ResponseEntity<UsuarioDTO> editarUsuario (@Valid @PathVariable UUID sequencial, @RequestBody UsuarioDTO usuarioEditado);
+
+    @DeleteMapping("/{sequencial}")
+    ResponseEntity<Void> deletarUsuarioBySequencial (@PathVariable UUID sequencial);
 }

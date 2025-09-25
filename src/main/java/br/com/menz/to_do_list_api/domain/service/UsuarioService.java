@@ -57,4 +57,9 @@ public class UsuarioService implements UsuarioServiceInboundPort {
         return usuarioRepositoryOutbound.editarUsuario(usuarioBuscado);
     }
 
+    @Override
+    public void deletarUsuarioBySequencial(UUID sequencial) {
+        usuarioRepositoryOutbound.deletarUsuarioBySequencial(sequencial);
+    }
+
 }

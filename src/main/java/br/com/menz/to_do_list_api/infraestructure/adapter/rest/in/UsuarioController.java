@@ -55,4 +55,12 @@ public class UsuarioController implements UsuarioRestContract {
 
         return ResponseEntity.status(HttpStatus.OK).body(novoUsuarioEditado);
     }
+
+    @Override
+    @DeleteMapping("/{sequencial}")
+    public ResponseEntity<Void> deletarUsuarioBySequencial(@PathVariable UUID sequencial) {
+        usuarioService.deletarUsuarioBySequencial(sequencial);
+
+        return ResponseEntity.noContent().build();
+    }
 }
