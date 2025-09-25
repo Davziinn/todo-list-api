@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/usuarios")
@@ -45,5 +46,13 @@ public class UsuarioController implements UsuarioRestContract {
                 .map(mapper::toDTO)
                 .toList();
         return ResponseEntity.status(HttpStatus.OK).body(usuariosBuscados);
+    }
+
+    @Override
+    @PutMapping("/{sequencial}")
+    public ResponseEntity<UsuarioDTO> editarUsuario(@Valid @PathVariable UUID sequencial, @RequestBody UsuarioDTO usuarioEditado) {
+        UsuarioDTO novoUsuarioEditado = mapper.toDTO(usuarioService.editarUsuario(sequencial, mapper.toModel(usuarioEditado)));
+
+        return ResponseEntity.status(HttpStatus.OK).body(novoUsuarioEditado);
     }
 }

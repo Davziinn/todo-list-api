@@ -8,6 +8,7 @@ import br.com.menz.to_do_list_api.domain.ports.in.UsuarioServiceInboundPort;
 import br.com.menz.to_do_list_api.domain.ports.out.UsuarioRepositoryOutboundPort;
 
 import java.util.List;
+import java.util.UUID;
 
 public class UsuarioService implements UsuarioServiceInboundPort {
 
@@ -41,6 +42,19 @@ public class UsuarioService implements UsuarioServiceInboundPort {
         } catch (Exception e) {
             throw new UsuariosNaoEncontradosException("Nenhum usuário foi encontrado");
         }
+    }
+
+    @Override
+    public Usuario editarUsuario(UUID sequencial, Usuario usuario) {
+        Usuario usuarioBuscado = usuarioRepositoryOutbound.buscarUsuarioBySequencial(sequencial)
+                .orElseThrow(() -> new UsuariosNaoEncontradosException("Usuário não encontrado"));
+
+        usuarioBuscado.setSequencial(sequencial);
+        usuarioBuscado.setNome(usuario.getNome());
+        usuarioBuscado.setEmail(usuario.getEmail());
+        usuarioBuscado.setSenha(usuario.getSenha());
+
+        return usuarioRepositoryOutbound.editarUsuario(usuarioBuscado);
     }
 
 }

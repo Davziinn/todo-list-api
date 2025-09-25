@@ -3,12 +3,10 @@ package br.com.menz.to_do_list_api.infraestructure.adapter.rest.in;
 import br.com.menz.to_do_list_api.infraestructure.dto.UsuarioDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UsuarioRestContract {
 
@@ -20,4 +18,7 @@ public interface UsuarioRestContract {
 
     @GetMapping
     ResponseEntity<List<UsuarioDTO>> buscarTodosOsUsuarios ();
+
+    @PutMapping("/{sequencial}")
+    ResponseEntity<UsuarioDTO> editarUsuario (@Valid @PathVariable UUID sequencial, @RequestBody UsuarioDTO usuarioEditado);
 }
