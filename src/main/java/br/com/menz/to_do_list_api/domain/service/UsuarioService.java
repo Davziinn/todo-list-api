@@ -13,7 +13,6 @@ import java.util.UUID;
 public class UsuarioService implements UsuarioServiceInboundPort {
 
     private final UsuarioRepositoryOutboundPort usuarioRepositoryOutbound;
-    // private final UsuarioRepositoryOutboundPort usuarioRepositoryOutbound;
 
     public UsuarioService(UsuarioRepositoryOutboundPort usuarioRepositoryOutbound) {
         this.usuarioRepositoryOutbound = usuarioRepositoryOutbound;
