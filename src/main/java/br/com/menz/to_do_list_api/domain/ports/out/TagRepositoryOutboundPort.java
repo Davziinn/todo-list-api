@@ -10,7 +10,7 @@ public interface TagRepositoryOutboundPort {
 
     Tag salvarTag (Tag tag);
 
-    Optional<Tag> buscarBySequencial (Tag tag);
+    Optional<Tag> buscarBySequencial (UUID sequencial);
 
     List<Tag> buscarTodasTags ();
 

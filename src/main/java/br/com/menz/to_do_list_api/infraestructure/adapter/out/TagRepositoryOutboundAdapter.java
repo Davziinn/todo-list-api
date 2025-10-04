@@ -28,11 +28,8 @@ public class TagRepositoryOutboundAdapter implements TagRepositoryOutboundPort {
     }
 
     @Override
-    public Optional<Tag> buscarBySequencial(Tag tag) {
-        UUID sequencialExtraidoDoObjeto = tag.getSequencial();
-
-        Optional<TagEntity> tagBuscada = repositoryJPA.findById(sequencialExtraidoDoObjeto);
-
+    public Optional<Tag> buscarBySequencial(UUID sequencial) {
+        Optional<TagEntity> tagBuscada = repositoryJPA.findById(sequencial);
         return tagBuscada.map(mapper::toModel);
     }
 

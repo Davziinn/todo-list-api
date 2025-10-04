@@ -8,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/v1/tags")
 public class TagController implements TagRestContract {
@@ -26,5 +29,40 @@ public class TagController implements TagRestContract {
         TagDTO tagSalva = mapper.toDTO(tagService.cadastrarTag(mapper.toModel(tag)));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(tagSalva);
+    }
+
+    @Override
+    @GetMapping("/{sequencial}")
+    public ResponseEntity<TagDTO> buscarTagBySequencial (@PathVariable UUID sequencial) {
+        TagDTO tagBuscada = mapper.toDTO(tagService.buscarTagBySequencial(sequencial));
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(tagBuscada);
+    }
+
+    @Override
+    @GetMapping
+    public ResponseEntity<List<TagDTO>> listarTodasTags() {
+        List<TagDTO> tagsEncontradas = tagService.buscarTodasTags()
+                .stream()
+                .map(mapper::toDTO)
+                .toList();
+
+        return ResponseEntity.status(HttpStatus.OK).body(tagsEncontradas);
+    }
+
+    @Override
+    @PutMapping("/{sequencial}")
+    public ResponseEntity<TagDTO> editarTag(@PathVariable UUID sequencial, @RequestBody TagDTO tagDTO) {
+        TagDTO tagEditada = mapper.toDTO(tagService.editarTag(mapper.toModel(tagDTO)));
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(tagEditada);
+    }
+
+    @Override
+    @DeleteMapping("/{sequencial}")
+    public ResponseEntity<Void> deletarTagBySequencial(@PathVariable UUID sequencial) {
+        tagService.deletarTagBySequencial(sequencial);
+
+        return ResponseEntity.noContent().build();
     }
 }
